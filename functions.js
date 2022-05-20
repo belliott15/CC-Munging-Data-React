@@ -170,7 +170,17 @@ Output:
 */
 
 export function getAverageCoolFactorOfEachCar(customers) {
-    return true;
+    const averageCoolFactorPerCar = customers.reduce((acc, customer) => {
+        if(!acc[customer.car_make]){
+            acc[customer.car_make] = [customer.cool_factor];
+        } else {
+            acc[customer.car_make].push(customer.cool_factor);
+            acc[customer.car_make].map(car => car + car)
+        }
+        return acc;
+    }, {})
+
+    return averageCoolFactorPerCar;
 }
 
 
