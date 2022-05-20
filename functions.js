@@ -175,12 +175,19 @@ export function getAverageCoolFactorOfEachCar(customers) {
             acc[customer.car_make] = [customer.cool_factor];
         } else {
             acc[customer.car_make].push(customer.cool_factor);
-            acc[customer.car_make].map(car => car + car)
         }
         return acc;
     }, {})
+    const answer = Object.entries(averageCoolFactorPerCar).reduce((arr, curr) => {
+        const total = curr[1].reduce((acc, num) => {
+            acc += num
+            return acc;
+        }, 0);
+        arr[curr[0]] = total / curr[1].length
+        return arr;
+    }, {});
 
-    return averageCoolFactorPerCar;
+    return answer;
 }
 
 
